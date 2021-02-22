@@ -1,0 +1,22 @@
+version: "3.3"
+services:
+
+  postgres:
+    image: "postgres:12"
+    environment:
+      POSTGRES_DB: "${DB}"
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+    ports:
+    - "5432:5432"
+
+  data-processing:
+    image: "${DATA_PROCESSING_IMAGE}:${DATA_PROCESSING_TAG}"
+    environment:
+      SPRING_PROFILES_ACTIVE: "container"
+      SPRING_DATASOURCE_USERNAME: "${DB_USER}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+    ports:
+    - "8080:8080"
+    depends_on:
+      - postgres

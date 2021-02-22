@@ -1,0 +1,35 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+---
+
+spring:
+
+  config:
+    activate:
+      on-profile: container
+
+  datasource:
+    url: jdbc:postgresql://postgres:5432/tweets
+    username: username
+    password: password
+    driverClassName: org.postgresql.Driver
+
+---
+
+spring:
+
+  config:
+    activate:
+      on-profile: local
+
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/tweets
+    username: username
+    password: password
+    driverClassName: org.postgresql.Driver
+  flyway:
+    clean-disabled: false

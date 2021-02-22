@@ -1,0 +1,12 @@
+spring:
+
+  profiles:
+    active: test
+
+  datasource:
+    url: jdbc:h2:mem:tweets;MODE=PostgreSQL
+    driver-class-name: org.h2.Driver
+    username: tweets
+    password: tweets
+    flyway:
+      clean-disabled: false
